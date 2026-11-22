@@ -1,16 +1,100 @@
 [
-  {"capability":"code","source":"archive data-and-dreams-main (TanStack Start app 'CreativeScroll', French UI, same Lovable template)","outcome":"migrate","status":"in_progress","next_action":"copy src, assets, styles; reuse generated Cloud client"},
-  {"capability":"schema","source":"drizzle/migrations 0000-0002 (profiles, user_roles, categories, contents, reports, moderation_decisions; enums, RLS, triggers, RPCs)","outcome":"migrate","status":"pending","next_action":"apply as one migration in Lovable Cloud"},
-  {"capability":"seed data","source":"categories seed in migration 0000","outcome":"migrate","status":"pending","next_action":"included in migration"},
-  {"capability":"records","source":"old Lovable Cloud database (no export in archive)","outcome":"migrate","status":"pending","next_action":"user exports tables as CSV/JSON after preview"},
-  {"capability":"auth identities","source":"old Lovable Cloud email/password users (no export)","outcome":"migrate","status":"pending","next_action":"user export (emails + original ids); first sign-in via /forgot-password -> /reset-password"},
-  {"capability":"authorization","source":"user_roles (creator/moderator) + has_role + RLS + content_guard trigger","outcome":"migrate","status":"pending","next_action":"recreate in migration; verify creator and moderator flows"},
-  {"capability":"storage bucket","source":"private bucket content-media with per-user folder policies","outcome":"migrate","status":"pending","next_action":"create bucket + policies; verify upload"},
-  {"capability":"storage file bytes","source":"old content-media objects","outcome":"migrate","status":"pending","next_action":"old file bytes not in archive; request download if needed"},
-  {"capability":"public endpoints / webhooks / schedules","source":"none detected (cron-auth helper unused)","outcome":"none","status":"verified","next_action":null},
-  {"capability":"external providers","source":"none (no Stripe, email provider, AI)","outcome":"none","status":"verified","next_action":null},
-  {"capability":"capacitor packages","source":"package.json @capacitor/* with no config or call sites","outcome":"excluded","status":"verified","next_action":"add back if a native mobile build is wanted"},
-  {"capability":"secrets","source":".env (excluded; platform-managed Cloud keys only)","outcome":"excluded","status":"verified","next_action":null},
-  {"capability":"cutover","source":"old app https://data-and-dreams.lovable.app","outcome":"pending","status":"pending","next_action":"publish new app when ready"},
-  {"capability":"verification","source":"preview","outcome":"migrate","status":"pending","next_action":"creator sign-up/create/upload, moderator accept, history"}
+ {
+  "capability": "code",
+  "source": "archive data-and-dreams-main (TanStack Start app 'CreativeScroll', French UI, same Lovable template)",
+  "outcome": "migrate",
+  "status": "verified",
+  "next_action": "none — build, typecheck and routing test pass"
+ },
+ {
+  "capability": "schema",
+  "source": "drizzle/migrations 0000-0002 (profiles, user_roles, categories, contents, reports, moderation_decisions; enums, RLS, triggers, RPCs)",
+  "outcome": "migrate",
+  "status": "verified",
+  "next_action": "none — generated types match the original exactly"
+ },
+ {
+  "capability": "seed data",
+  "source": "categories seed in migration 0000",
+  "outcome": "migrate",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "records",
+  "source": "old Lovable Cloud database (no export in archive)",
+  "outcome": "migrate",
+  "status": "pending",
+  "next_action": "user exports tables as CSV/JSON after preview"
+ },
+ {
+  "capability": "auth identities",
+  "source": "old Lovable Cloud email/password users (no export)",
+  "outcome": "migrate",
+  "status": "pending",
+  "next_action": "user export (emails + original ids); first sign-in via /forgot-password -> /reset-password"
+ },
+ {
+  "capability": "authorization",
+  "source": "user_roles (creator/moderator) + has_role + RLS + content_guard trigger",
+  "outcome": "migrate",
+  "status": "verified",
+  "next_action": "assign moderator roles once users are imported"
+ },
+ {
+  "capability": "storage bucket",
+  "source": "private bucket content-media with per-user folder policies",
+  "outcome": "migrate",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "storage file bytes",
+  "source": "old content-media objects",
+  "outcome": "migrate",
+  "status": "pending",
+  "next_action": "old file bytes not in archive; request download if needed"
+ },
+ {
+  "capability": "public endpoints / webhooks / schedules",
+  "source": "none detected (cron-auth helper unused)",
+  "outcome": "none",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "external providers",
+  "source": "none (no Stripe, email provider, AI)",
+  "outcome": "none",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "capacitor packages",
+  "source": "package.json @capacitor/* with no config or call sites",
+  "outcome": "excluded",
+  "status": "verified",
+  "next_action": "add back if a native mobile build is wanted"
+ },
+ {
+  "capability": "secrets",
+  "source": ".env (excluded; platform-managed Cloud keys only)",
+  "outcome": "excluded",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "cutover",
+  "source": "old app https://data-and-dreams.lovable.app",
+  "outcome": "pending",
+  "status": "pending",
+  "next_action": "publish new app when ready"
+ },
+ {
+  "capability": "verification",
+  "source": "preview",
+  "outcome": "migrate",
+  "status": "implemented",
+  "next_action": "creator create+upload, cross-user isolation, moderator accept, history and creator notification verified; imported-user first sign-in pending on exports"
+ }
 ]
