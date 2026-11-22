@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { AuthScreen } from '@/components/auth-screen';
+export const Route=createFileRoute('/auth')({head:()=>({meta:[{title:'Connexion · CreativeScroll'},{name:'description',content:'Connectez-vous à votre espace de création CreativeScroll.'},{property:'og:title',content:'Connexion · CreativeScroll'},{property:'og:description',content:'Votre espace de création et de modération.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:AuthScreen});

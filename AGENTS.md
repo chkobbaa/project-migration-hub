@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+
+# Project rules
+- UI copy lives in `src/lib/fr.ts`; add new strings there instead of inline text — keeps the single-language UI consistent.
+- Migrated accounts sign in the first time through `/forgot-password` → `/reset-password` (email verification + new password); keep both routes public because imported users have no usable password.
+- Roles live only in `public.user_roles` and are checked with `has_role`; moderation state changes go through the `moderate_content` / `record_content_report` database functions — the `content_guard` trigger rejects other status edits.

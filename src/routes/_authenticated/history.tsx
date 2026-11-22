@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { WorkspacePage,WorkspaceLoading,WorkspaceError } from '@/components/workspace-page';
+import { workspaceQuery } from '@/lib/queries';
+import { requireRole } from '@/lib/role-guard';
+export const Route=createFileRoute('/_authenticated/history')({beforeLoad:()=>requireRole('moderator'),loader:({context})=>context.queryClient.ensureQueryData(workspaceQuery()),head:()=>({meta:[{title:'Historique · CreativeScroll'},{name:'description',content:'Consultez les décisions de modération enregistrées.'},{property:'og:title',content:'Historique · CreativeScroll'},{property:'og:description',content:'Toutes les décisions de modération en un seul endroit.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <WorkspacePage mode="history"/>,pendingComponent:WorkspaceLoading,errorComponent:WorkspaceError});

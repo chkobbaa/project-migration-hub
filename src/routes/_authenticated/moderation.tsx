@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { WorkspacePage,WorkspaceLoading,WorkspaceError } from '@/components/workspace-page';
+import { workspaceQuery } from '@/lib/queries';
+import { requireRole } from '@/lib/role-guard';
+export const Route=createFileRoute('/_authenticated/moderation')({beforeLoad:()=>requireRole('moderator'),loader:({context})=>context.queryClient.ensureQueryData(workspaceQuery()),head:()=>({meta:[{title:'À modérer · CreativeScroll'},{name:'description',content:'Examinez les contenus en attente de validation.'},{property:'og:title',content:'À modérer · CreativeScroll'},{property:'og:description',content:'Chaque contenu mérite un regard attentif.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <WorkspacePage mode="moderation"/>,pendingComponent:WorkspaceLoading,errorComponent:WorkspaceError});

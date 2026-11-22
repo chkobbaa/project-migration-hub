@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { WorkspacePage,WorkspaceLoading,WorkspaceError } from '@/components/workspace-page';
+import { workspaceQuery } from '@/lib/queries';
+import { requireRole } from '@/lib/role-guard';
+export const Route=createFileRoute('/_authenticated/reports')({beforeLoad:()=>requireRole('moderator'),loader:({context})=>context.queryClient.ensureQueryData(workspaceQuery()),head:()=>({meta:[{title:'Signalements · CreativeScroll'},{name:'description',content:'Examinez et traitez les signalements ouverts.'},{property:'og:title',content:'Signalements · CreativeScroll'},{property:'og:description',content:'Gardez un espace de contenus sûr et pertinent.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <WorkspacePage mode="reports"/>,pendingComponent:WorkspaceLoading,errorComponent:WorkspaceError});

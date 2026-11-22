@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795352402015,
+      "tag": "0000_creative_scroll_schema",
+      "breakpoints": true
+    }
+  ]
+}
